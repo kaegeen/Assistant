@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <nav class="bg-purple-600 p-4 text-center">
+        <h1 class="text-white text-2xl font-bold">AI Assistant - Virtual Girl</h1>
+    </nav>
+
+    <!-- Chat Container -->
+    <section class="py-8 flex flex-col items-center">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+            <div id="chatWindow" class="h-64 overflow-y-auto mb-4 p-2 border border-gray-700 rounded">
+                <p class="text-gray-400">AI Assistant is ready to chat...</p>
+            </div>
+            <div class="flex">
+                <input id="userInput" type="text" placeholder="Ask me anything..." class="p-2 text-black flex-1 rounded-l-md">
+                <button onclick="sendMessage()" class="bg-purple-500 px-4 py-2 text-white rounded-r-md hover:bg-purple-700">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function sendMessage() {
+            const inputField = document.getElementById("userInput");
+            const chatWindow = document.getElementById("chatWindow");
+            const userMessage = inputField.value.trim();
+            if (!userMessage) return;
+
+            chatWindow.innerHTML += `<p class='text-blue-400'><strong>You:</strong> ${userMessage}</p>`;
+            inputField.value = "";
+
+            setTimeout(() => {
+                const aiResponses = [
+                    "Hello! How can I assist you today?",
+                    "I'm here to help! Ask me anything.",
+                    "Tell me more about what you need!",
+                    "That sounds interesting! Can you elaborate?"
+                ];
+                const aiMessage = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+                chatWindow.innerHTML += `<p class='text-pink-400'><strong>AI Girl:</strong> ${aiMessage}</p>`;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 1000);
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-purple-600 text-center py-4 text-white mt-8">
+        <p>&copy; 2025 AI Assistant. All rights reserved.</p>
+    </footer>
+</body>
+</html>
